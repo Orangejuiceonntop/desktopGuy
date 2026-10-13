@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmi5abnhkw11"]
 
 [ext_resource type="Texture2D" uid="uid://2mtk1tmjr1p4" path="res://sprite/Shadow dog-Sheet.png" id="1_0f027"]
+[ext_resource type="Script" uid="uid://nj47f7oh6jwt" path="res://script.gd" id="1_2c62f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c62f"]
 atlas = ExtResource("1_0f027")
@@ -139,7 +140,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_671wp")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"barking",
 "speed": 5.0
 }, {
 "frames": [{
@@ -195,14 +196,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
+size = Vector2(159, 106.75)
+
 [node name="Node2D" type="Node2D" unique_id=404937389]
+script = ExtResource("1_2c62f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=238937490]
 texture_filter = 1
+position = Vector2(97, 83)
+scale = Vector2(7.21875, 6.7812495)
 sprite_frames = SubResource("SpriteFrames_kv3aw")
 animation = &"running_idling"
-frame_progress = 0.6630381
+frame_progress = 0.34044647
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1860236654]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=133075241]
+position = Vector2(96.5, 140.375)
+shape = SubResource("RectangleShape2D_0f027")
