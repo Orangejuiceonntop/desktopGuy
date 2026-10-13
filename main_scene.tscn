@@ -139,7 +139,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_671wp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"barking",
 "speed": 5.0
 }, {
@@ -171,7 +171,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ak604")
 }],
-"loop": true,
+"loop": 1,
 "name": &"running_idling",
 "speed": 5.0
 }, {
@@ -191,7 +191,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y5ved")
 }],
-"loop": true,
+"loop": 1,
 "name": &"sitting",
 "speed": 5.0
 }]
