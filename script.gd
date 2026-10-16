@@ -12,10 +12,12 @@ var drag_offset = Vector2()
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var area = $Area2D
 
+
 func _ready():
 	screen_size = Vector2(DisplayServer.screen_get_size())
 	animated_sprite.play("running_idling")
 	area.input_event.connect(_on_area_input)
+	$PopupMenu.add_check_item("Sit", 0)
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -62,3 +64,10 @@ func _on_area_input(_viewport, event, _shape_idx):
 			drag_offset = mouse_pos - win_pos
 		else:
 			is_dragging = false
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		$PopupMenu.popup_on_parent(Rect2i(Vector2i(event.position), Vector2i.ZERO))
+		$PopupMenu.id_pressed.connect(_on_menu_pressed)
+		
+func _on_menu_pressed(id):
+	if id == 0:
+		animated_sprite.play("sitting")

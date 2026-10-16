@@ -215,3 +215,6 @@ frame_progress = 0.34044647
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=133075241]
 position = Vector2(96.5, 140.375)
 shape = SubResource("RectangleShape2D_0f027")
+
+[node name="PopupMenu" type="PopupMenu" parent="." unique_id=2114261706]
+oversampling_override = 1.0
