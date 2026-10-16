@@ -191,7 +191,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y5ved")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"sitting",
 "speed": 5.0
 }]
@@ -207,8 +207,7 @@ texture_filter = 1
 position = Vector2(97, 83)
 scale = Vector2(7.21875, 6.7812495)
 sprite_frames = SubResource("SpriteFrames_kv3aw")
-animation = &"running_idling"
-frame_progress = 0.34044647
+animation = &"sitting"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1860236654]
 
