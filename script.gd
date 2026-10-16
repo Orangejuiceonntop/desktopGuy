@@ -62,11 +62,16 @@ func _on_area_input(_viewport, event, _shape_idx):
 			var mouse_pos = Vector2(DisplayServer.mouse_get_position())
 			var win_pos = Vector2(DisplayServer.window_get_position())
 			drag_offset = mouse_pos - win_pos
+		elif event.released:
+			var distance = event.position.distance_to(position)
+			if distance < 10: # Click
+				is_dragging = false
 		else:
 			is_dragging = false
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		$PopupMenu.popup_on_parent(Rect2i(Vector2i(event.position), Vector2i.ZERO))
 		$PopupMenu.id_pressed.connect(_on_menu_pressed)
+		speed = 0
 		
 func _on_menu_pressed(id):
 	if id == 0:
