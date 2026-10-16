@@ -8,6 +8,7 @@ var idle_timer = 0.0
 var is_idling = false
 var is_dragging = false
 var drag_offset = Vector2()
+var clicked = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var area = $Area2D
@@ -18,6 +19,7 @@ func _ready():
 	animated_sprite.play("running_idling")
 	area.input_event.connect(_on_area_input)
 	$PopupMenu.add_check_item("Sit", 0)
+	$PopupMenu.add_check_item("Walk", 1)
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -62,11 +64,13 @@ func _on_area_input(_viewport, event, _shape_idx):
 			var mouse_pos = Vector2(DisplayServer.mouse_get_position())
 			var win_pos = Vector2(DisplayServer.window_get_position())
 			drag_offset = mouse_pos - win_pos
-		elif event.released:
+		else:
 			var distance = event.position.distance_to(position)
 			if distance < 10: # Click
+				clicked = true
 				is_dragging = false
-		else:
+			if distance > 10:
+				is_dragging = true
 			is_dragging = false
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		$PopupMenu.popup_on_parent(Rect2i(Vector2i(event.position), Vector2i.ZERO))
@@ -76,3 +80,6 @@ func _on_area_input(_viewport, event, _shape_idx):
 func _on_menu_pressed(id):
 	if id == 0:
 		animated_sprite.play("sitting")
+	if id == 1:
+		animated_sprite.play("running_idling")
+		speed = 300
