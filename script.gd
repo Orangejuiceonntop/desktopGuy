@@ -18,8 +18,11 @@ func _ready():
 	screen_size = Vector2(DisplayServer.screen_get_size())
 	animated_sprite.play("running_idling")
 	area.input_event.connect(_on_area_input)
-	$PopupMenu.add_check_item("Sit", 0)
-	$PopupMenu.add_check_item("Walk", 1)
+	$PopupMenu.add_item("Sit", 0)
+	$PopupMenu.add_item("Speak", 1)
+	$PopupMenu.add_item("Walk", 2)
+	$PopupMenu.add_item("Gravity", 3)
+	$PopupMenu.add_item("Quit", 4)
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -67,7 +70,6 @@ func _on_area_input(_viewport, event, _shape_idx):
 		else:
 			var distance = event.position.distance_to(position)
 			if distance < 10: # Click
-				clicked = true
 				is_dragging = false
 			if distance > 10:
 				is_dragging = true
@@ -81,5 +83,14 @@ func _on_menu_pressed(id):
 	if id == 0:
 		animated_sprite.play("sitting")
 	if id == 1:
+		animated_sprite.play("barking")
+		speed = 300
+	if id == 2:
+		animated_sprite.play("running_idling")
+		speed = 300
+	if id == 3:
+		animated_sprite.play("running_idling")
+		speed = 300
+	if id == 4:
 		animated_sprite.play("running_idling")
 		speed = 300
